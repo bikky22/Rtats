@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Classify</title>
+</head>
+<body>
+
+<!--  --------all styles here---------  -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+<script>
+    
+    $(".alert").alert('close')
+
+    $(document).ready(function(){
+        $('#execute').click(function(){
+            $('.alert').show()
+        })
+    });
+</script>
+    
+<style>
+    .alert-info{
+        display: none;
+    }
+
+</style>
+    
+
+<!--  ---------main body here------------->
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">owcs<b>X</b> | <font color="#3399ff"><b>R</b>eports Lite</font></a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+            <center><h5>Today</h5></center>
+            <hr>
+            <center><h5>{{week_day}}</h5></center>
+            <hr>
+                <form method="POST" action="/">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <input id="algo" name="algo" type="text" class="form-control" placeholder={{algo}} data-toggle="tooltip" data-placement="top" title="provide algo" />
+                        </div>
+                        <div class="row">
+                            <input id="execute" type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Predict" />
+                        </div>
+
+                    </div>
+                </form>
+            <center>V 1.0</center>
+            <center><p><font size="1sp">Developed By </font><font color="#0099ff" size="1sp">owcs</font><font color="#e67300" size="1sp">X</font></p></center>
+            <center><p><font size="1sp">Process done in {{time}}</font></p></center>
+        </nav>
+        <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+            <div class="navbar navbar-light bg-blue sticky-top">
+                <nav class="navbar navbar-light bg-blue">
+                    <h1>Machine Learning</h1>
+                    <div class="row">
+                        <div class="col-md-7">
+                            
+                        </div>
+                        <div class=" col-md-2"></div>
+                        <div class=" col-md-3">
+
+                        </div>
+                    </div>
+                </nav>
+
+            </div>
+
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                please wait
+            </div>
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Score : {{score}} 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">x</span>
+            </button>
+            </div>
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{msg}} 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">x</span>
+            </button>
+            </div>
+
+            <br>
+            <div class="table-responsive  fixed-table">
+                <table class="table table-striped">
+                    {{ res.to_html(classes="table table-striped") | safe }}
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+      
+</body>
+</html>
